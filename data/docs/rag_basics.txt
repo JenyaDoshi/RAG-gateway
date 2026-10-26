@@ -1,0 +1,19 @@
+Retrieval-Augmented Generation (RAG): the basics
+
+What RAG is
+Retrieval-Augmented Generation combines a search step with a text generation step. Instead of asking a language model to answer from memory, the system first finds passages from your own documents that are relevant to the question, and then asks the model to answer using only those passages. This lets a model answer questions about private or recent information it was never trained on, and it makes it possible to show which documents an answer came from.
+
+Why documents are split into chunks
+Documents are split into chunks for three reasons. First, an embedding turns a piece of text into a single vector, so a whole book squeezed into one vector would blur many topics together, while a short focused passage keeps one clear meaning that can be matched to a question. Second, language models have limited context windows, and sending only the few relevant chunks is cheaper and faster than sending entire documents. Third, shorter and more relevant context usually produces more accurate answers, because the model is not distracted by unrelated text.
+
+Chunk overlap
+Neighbouring chunks usually share a small amount of text, called overlap. Overlap protects against cutting an idea in half at a chunk boundary: a sentence that ends one chunk is repeated at the start of the next, so the meaning is still found in at least one chunk.
+
+Embeddings
+An embedding is a list of numbers that represents the meaning of a piece of text. Texts with similar meaning get vectors that point in similar directions, which is why a question like "How do I reset my password?" can match a passage titled "Changing your login credentials" even though they share few words. The same embedding model must be used for the chunks and for the questions, because vectors from different models are not comparable.
+
+Vector index
+A vector index stores the embeddings and finds the ones closest to a question vector quickly. It stores only numbers. The original text and metadata such as the filename are stored separately, and the index only tells you which stored items are closest. Libraries such as FAISS and Chroma provide vector indexes.
+
+Generation and grounding
+After retrieval, the retrieved chunks are inserted into a prompt together with the question. The prompt tells the model to rely only on that context and to say so when the context is not enough. This instruction is what keeps the model grounded and reduces made-up answers.

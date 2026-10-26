@@ -1,0 +1,19 @@
+Notes on LLM gateways and provider fallback
+
+What a gateway does
+An LLM gateway is a layer between an application and one or more language model providers. The application sends a request to the gateway using one common format, and the gateway forwards it to a primary provider. If that provider fails in a way that another provider could fix, the gateway automatically sends the same request to a secondary provider.
+
+Errors that justify fallback
+Errors that are temporary or specific to one provider are good reasons to switch. These include HTTP 429 (too many requests, or quota exhausted), HTTP 503 (service unavailable), HTTP 500 (internal server error), and timeouts. A rate limit on one provider says nothing about the other provider, so the request can be tried there.
+
+Errors that must not trigger fallback
+Some errors will fail on every provider or point to a bug in the application. HTTP 401 and HTTP 403 mean the credentials are wrong or lack permission, so the key must be fixed instead of switching provider. HTTP 400 means the request itself is invalid, and sending the same bad request elsewhere only repeats the failure. Blind retries on these errors waste time and quota.
+
+Retries and timeouts
+Each provider should have a configurable timeout and a small, limited number of retries with a short waiting time between attempts. Retrying a rate-limit error immediately usually fails again, so a gateway often waits briefly or moves on to the next provider.
+
+Logging
+Every request should log which provider handled it, how long it took, and why a fallback happened. If every provider fails, the gateway should raise one clear error that lists what went wrong with each provider.
+
+Practical caution
+A fallback provider needs its own valid API key, its own available quota, and similar capabilities such as context window size. Providers also use different request formats, so each provider needs its own small adapter that converts the shared prompt into the format that provider expects.

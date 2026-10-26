@@ -1,0 +1,16 @@
+# Secrets - never commit
+.env
+.env.*
+!.env.example
+
+# Generated files and local data
+storage/
+__pycache__/
+*.pyc
+*.py[cod]
+.venv/
+venc/
+
+# testing and tooling
+.pytest_cache/
+.mypy_cache/

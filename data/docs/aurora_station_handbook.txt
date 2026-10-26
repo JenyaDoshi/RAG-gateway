@@ -1,0 +1,15 @@
+Aurora Station Handbook (fictional example document)
+
+Aurora Station is a small research outpost used to study polar weather. This handbook explains the daily routine and the main safety rules for the twelve people who live there during the winter season.
+
+Daily schedule
+The station wakes at 06:30. Breakfast is served at 07:00 in the common room. The weather team uploads the first measurements at 08:15, and the morning briefing starts at 09:00. Lunch is at 12:30 and dinner is at 18:45. Quiet hours begin at 22:00, and all non-essential lights in the corridors are switched off at that time.
+
+Supplies
+A supply drone brings fresh food and spare parts every Thursday. The drone is scheduled to land on the roof pad at 14:20. If the wind speed is above 40 km/h, the landing is postponed, and the station manager must notify the logistics office in Tromso before 12:00 on the same day. Frozen food is stored in Freezer B. Medical supplies are kept in the red cabinet next to the infirmary door.
+
+Emergency procedures
+If the main generator fails, the backup generator starts automatically within 30 seconds. Everyone must then gather in the common room and wait for instructions from the station manager. In case of fire, use the nearest extinguisher only if the fire is small. Otherwise leave through the east exit, which leads to the emergency shelter. The shelter holds food and water for fourteen days.
+
+Outdoor work
+No one may go outside alone. Outdoor work requires a partner and a radio check every thirty minutes. The outdoor work log must be signed before leaving and after returning. If a team misses two radio checks in a row, the station manager starts the search procedure.
